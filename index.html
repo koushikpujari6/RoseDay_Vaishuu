@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Vaishuu ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    /* Intro Screen */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff4d6d, #ff8fab);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      text-align: center;
+    }
+
+    #intro h1 { font-size: 2.5rem; margin-bottom: 20px; }
+
+    #intro button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      background: #fff;
+      color: #ff4d6d;
+      cursor: pointer;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      border-radius: 22px;
+      text-align: center;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      animation: fadeIn 1.5s ease;
+      z-index: 2;
+    }
+
+    h1 { margin: 5px 0; font-size: 2.2rem; }
+    h2 { font-weight: normal; margin: 10px 0 20px; }
+
+    #message {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      min-height: 90px;
+    }
+
+    .rose {
+      font-size: 3.2rem;
+      margin: 18px 0;
+      animation: float 2s infinite ease-in-out;
+      cursor: pointer;
+    }
+
+    button.mainBtn {
+      margin-top: 18px;
+      padding: 10px 22px;
+      border: none;
+      border-radius: 25px;
+      background: #fff;
+      color: #ff4d6d;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    footer { margin-top: 18px; font-size: 0.9rem; }
+
+    /* Love Letter Popup */
+    #letter {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .letterBox {
+      background: #fff;
+      color: #ff4d6d;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 360px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .letterBox button {
+      margin-top: 15px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4d6d;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .heart {
+      position: absolute;
+      top: -10px;
+      font-size: 18px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro -->
+  <div id="intro">
+    <h1>For My Special One 💌</h1>
+    <button onclick="openCard()">Click to Open ❤️</button>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="romantic.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>Happy Rose Day 🌹</h1>
+    <h1><strong>Vaishuu ❤️</strong></h1>
+    <h2>7th February – Valentine Week Begins</h2>
+
+    <div class="rose" onclick="changeMessage()">🌹</div>
+    <p id="message"></p>
+
+    <button class="mainBtn" onclick="showLetter()">Open Love Letter 💖</button>
+
+    <footer>
+      With love,<br />
+      Yours forever
+    </footer>
+  </div>
+
+  <!-- Love Letter -->
+  <div id="letter">
+    <div class="letterBox">
+      <h2>My Love 💕</h2>
+      <p>
+        Vaishuu, you are the most beautiful part of my life.
+        Your smile is my favorite place to be.
+        I promise to choose you, today and always ❤️
+      </p>
+      <button onclick="closeLetter()">Close 💌</button>
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    const intro = document.getElementById('intro');
+
+    function openCard() {
+      intro.style.display = 'none';
+      music.play();
+      typeEffect();
+      startHearts();
+    }
+
+    const text = `This rose is for you, Vaishuu 🌹\nEvery petal carries my feelings for you.\nYou make my world softer and brighter ❤️`;
+    let index = 0;
+
+    function typeEffect() {
+      if (index < text.length) {
+        document.getElementById('message').innerHTML += text.charAt(index) === '\n' ? '<br>' : text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 40);
+      }
+    }
+
+    function changeMessage() {
+      document.getElementById('message').innerHTML = "You are my forever 💖<br>Happy Rose Day, Vaishuu 🌹";
+    }
+
+    function showLetter() {
+      document.getElementById('letter').style.display = 'flex';
+    }
+
+    function closeLetter() {
+      document.getElementById('letter').style.display = 'none';
+    }
+
+    function startHearts() {
+      for (let i = 0; i < 25; i++) createHeart();
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+  </script>
+
+</body>
+</html>
